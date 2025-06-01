@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Terapia Emocional Profesional - Bienestar y equilibrio emocional con técnicas avanzadas de psicología y coaching." />
+<title>Terapia Emocional Profesional | Equilibrio y Bienestar</title>
+
+<!-- Google Fonts: Poppins Variable -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet" />
+
+<style>
+  /* Reset y base */
+  *, *::before, *::after {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: #2f2e41;
+    background: linear-gradient(135deg, #ffd6e8 0%, #b52f5a 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  ul {
+    list-style: none;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Navegación - glassmorphism */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    background: rgba(255 255 255 / 0.15);
+    backdrop-filter: saturate(180%) blur(20px);
+    box-shadow: 0 1px 12px rgb(0 0 0 / 0.07);
+    z-index: 200;
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.06em;
+    transition: background 0.3s ease;
+  }
+  nav a {
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    color: #fff;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    width: 0;
+    height: 3px;
+    background: #fff;
+    border-radius: 4px;
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+  nav a:hover::after,
+  nav a.active::after {
+    width: 50%;
+    left: 25%;
+  }
+  nav a:hover {
+    color: #ffe7f3;
+  }
+
+  /* Header full viewport */
+  header {
+    min-height: 100vh;
+    padding: 0 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.3rem;
+    max-width: 720px;
+    color: #fff;
+    filter: drop-shadow(0 0 8px rgb(0 0 0 / 0.3));
+  }
+  header h1 {
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  header p {
+    font-weight: 400;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    max-width: 600px;
+    line-height: 1.5;
+    opacity: 0.85;
+  }
+  header .btn-primary {
+    margin-top: 2rem;
+    padding: 1.3rem 3rem;
+    background: #fff0f5;
+    border-radius: 36px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #b52f5a;
+    box-shadow: 0 8px 40px #f99ac7;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.4s ease, color 0.4s ease, transform 0.3s ease;
+  }
+  header .btn-primary:hover {
+    background: #b52f5a;
+    color: #fff0f5;
+    transform: scale(1.05);
+  }
+
+  /* Fondo animado con SVG */
+  .background-blob {
+    position: fixed;
+    top: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    max-width: 800px;
+    max-height: 800px;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.45;
+    animation: floatBlob 10s ease-in-out infinite alternate;
+  }
+  @keyframes floatBlob {
+    0% { transform: translateY(0) translateX(0) scale(1); }
+    100% { transform: translateY(-40px) translateX(30px) scale(1.05); }
+  }
+
+  /* Main sections estilos */
+  main {
+    padding: 4rem 3rem 6rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    gap: 6rem;
+  }
+
+  /* Sección Sobre Nosotros */
+  #sobre-nosotros {
+    color: #3a2f4f;
+    max-width: 700px;
+  }
+  #sobre-nosotros h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    color: #b52f5a;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  #sobre-nosotros p {
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.75;
+    margin-bottom: 1.3rem;
+  }
+
+  /* Sección Servicios con Grid fluido */
+  #servicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.8rem;
+    align-items: stretch;
+  }
+  .service-card {
+    background: #fff0f5;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 18px 30px rgb(181 47 90 / 0.2);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .service-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 30px 60px rgb(181 47 90 / 0.4);
+  }
+  .service-card img {
+    border-radius: 18px;
+    margin-bottom: 1rem;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    box-shadow: 0 5px 18px rgb(181 47 90 / 0.15);
+  }
+  .service-card h3 {
+    color: #b52f5a;
+    font-weight: 800;
+    font-size: 1.6rem;
+    margin-bottom: 0.6rem;
+  }
+  .service-card p {
+    color: #5a426c;
+    font-weight: 400;
+    font-size: 1.1rem;
+    flex-grow: 1;
+  }
+  .service-card ul {
+    margin-top: 1rem;
+    list-style: inside disc;
+    color: #7a6196;
+    font-weight: 400;
+    font-size: 0.95rem;
+  }
+  .service-card ul li {
+    margin-bottom: 0.25rem;
+  }
+
+  /* Testimonios con animación y carrusel */
+  #testimonios {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  #testimonios h2 {
+    text-align: center;
+    font-size: 3rem;
+    color: #b52f5a;
+    font-weight: 800;
+    margin-bottom: 2rem;
+  }
+  .testimonial-list {
+    display: flex;
+    overflow: hidden;
+    scroll-snap-type: x mandatory;
+    gap: 2rem;
+  }
+  .testimonial {
+    min-width: 100%;
+    background: #fff0f5;
+    border-radius: 20px;
+    padding: 2rem 3rem;
+    box-shadow: 0 18px 30px rgb(181 47 90 / 0.15);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #4a2e4e;
+    scroll-snap-align: start;
+    transition: transform 0.5s ease;
+  }
+  .testimonial strong {
+    display: block;
+    margin-top: 1.5rem;
+    font-weight: 700;
+    font-style: normal;
+    color: #b52f5a;
+    text-align: right;
+    font-size: 1rem;
+  }
+  .testimonial-dots {
+    margin-top: 1.8rem;
+    text-align: center;
+  }
+  .testimonial-dots button {
+    width: 16px;
+    height: 16px;
+    background: #b52f5a;
+    border: none;
+    border-radius: 50%;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+  .testimonial-dots button.active,
+  .testimonial-dots button:hover {
+    opacity: 1;
+  }
+
+  /* Formulario de contacto moderno */
+  #contacto {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff0f5;
+    padding: 2.8rem 3.2rem;
+    border-radius: 30px;
+    box-shadow: 0 30px 60px rgb(181 47 90 / 0.25);
+  }
+  #contacto h2 {
+    color: #b52f5a;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  #contacto form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  #contacto input[type="text"],
+  #contacto input[type="email"],
+  #contacto select,
+  #contacto textarea {
+    padding: 1.1rem 1.5rem;
+    border-radius: 20px;
+    border: 2px solid #b52f5a;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: #3a2f4f;
+    transition: border-color 0.3s ease;
+    resize: vertical;
+  }
+  #contacto input[type="text"]:focus,
+  #contacto input[type="email"]:focus,
+  #contacto select:focus,
+  #contacto textarea:focus {
+    outline: none;
+    border-color: #ff85b7;
+    box-shadow: 0 0 10px #ff85b7;
+  }
+  #contacto textarea {
+    min-height: 130px;
+  }
+  #contacto button[type="submit"] {
+    padding: 1.3rem 2rem;
+    background: #b52f5a;
+    border: none;
+    border-radius: 36px;
+    color: #fff0f5;
+    font-weight: 700;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #contacto button[type="submit"]:hover {
+    background: #ff85b7;
+  }
+
+  /* Footer con info + newsletter + redes */
+  footer {
+    margin-top: 6rem;
+    padding: 3rem 3rem;
+    background: rgba(181, 47, 90, 0.95);
+    color: #fff0f5;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    border-radius: 36px 36px 0 0;
+  }
+  footer > div {
+    flex: 1 1 250px;
+    min-width: 220px;
+  }
+  footer h3 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  footer p {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  footer nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  footer nav a {
+    color: #fff0f5;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.2rem 0.3rem;
+    border-radius: 12px;
+    transition: background-color 0.25s ease;
+  }
+  footer nav a:hover {
+    background-color: #ff85b7;
+  }
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.6rem;
+    justify-content: flex-start;
+  }
+  .social-icons a {
+    color: #fff0f5;
+    transition: color 0.3s ease;
+  }
+  .social-icons a:hover {
+    color: #ff85b7;
+  }
+
+  /* Newsletter form */
+  .newsletter-form {
+    display: flex;
+    gap: 1rem;
+  }
+  .newsletter-form input[type="email"] {
+    flex-grow: 1;
+    border-radius: 36px;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+    color: #3a2f4f;
+  }
+  .newsletter-form button {
+    padding: 0.9rem 1.8rem;
+    border-radius: 36px;
+    border: none;
+    background: #ff85b7;
+    color: #fff0f5;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .newsletter-form button:hover {
+    background: #b52f5a;
+  }
+
+  /* Background slideshow para body */
+  body::before {
+    content: "";
+    position: fixed;
+    z-index: -2;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-size: cover;
+    background-position: center;
+    animation: bgFade 10s infinite;
+    filter: brightness(0.85) saturate(1.15);
+    transition: background-image 0.7s ease-in-out;
+  }
+  @keyframes bgFade {
+    0% { background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80'); }
+    20% { background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80'); }
+    40% { background-image: url('https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1920&q=80'); }
+    60% { background-image: url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1920&q=80'); }
+    80% { background-image: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1920&q=80'); }
+    100% { background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80'); }
+  }
+
+  /* Asistente Virtual estilo */
+  #virtual-assistant {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 72px;
+    height: 72px;
+    background: #b52f5a;
+    border-radius: 50%;
+    box-shadow: 0 8px 18px rgb(181 47 90 / 0.6);
+    cursor: pointer;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+  #virtual-assistant:hover {
+    background: #ff85b7;
+  }
+  #virtual-assistant svg {
+    width: 38px;
+    height: 38px;
+    fill: #fff0f5;
+  }
+
+  /* Ventana de chat */
+  #chat-window {
+    position: fixed;
+    bottom: 110px;
+    right: 30px;
+    width: 320px;
+    max-width: 90vw;
+    background: #fff0f5;
+    border-radius: 24px;
+    box-shadow: 0 25px 45px rgb(181 47 90 / 0.35);
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    z-index: 310;
+    font-size: 1rem;
+    color: #3a2f4f;
+  }
+  #chat-window header {
+    background: #b52f5a;
+    color: #fff0f5;
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+    font-size: 1.15rem;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #chat-window header button {
+    background: transparent;
+    border: none;
+    color: #fff0f5;
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+  #chat-messages {
+    flex-grow: 1;
+    padding: 1rem 1.5rem;
+    overflow-y: auto;
+    max-height: 250px;
+  }
+  #chat-messages .message {
+    margin-bottom: 1rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 20px;
+    max-width: 75%;
+    line-height: 1.4;
+    font-size: 0.95rem;
+  }
+  #chat-messages .message.user {
+    background: #b52f5a;
+    color: #fff0f5;
+    margin-left: auto;
+    box-shadow: 0 4px 8px rgb(181 47 90 / 0.6);
+  }
+  #chat-messages .message.bot {
+    background: #ffe7f3;
+    color: #5a426c;
+    box-shadow: 0 4px 8px rgb(181 47 90 / 0.2);
+  }
+  #chat-input-container {
+    border-top: 2px solid #b52f5a;
+    display: flex;
+    gap: 0.7rem;
+    padding: 0.8rem 1rem;
+  }
+  #chat-input {
+    flex-grow: 1;
+    border-radius: 20px;
+    border: 2px solid #b52f5a;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: #3a2f4f;
+    outline: none;
+  }
+  #chat-send-btn {
+    background: #b52f5a;
+    border: none;
+    border-radius: 20px;
+    color: #fff0f5;
+    font-weight: 700;
+    padding: 0 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #chat-send-btn:hover {
+    background: #ff85b7;
+  }
+
+  /* Animación Scroll Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.75s ease-out;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav {
+      padding: 1rem 1.5rem;
+      gap: 1.2rem;
+      font-size: 1rem;
+    }
+    header {
+      max-width: 90vw;
+      padding: 0 1.5rem;
+    }
+    main {
+      padding: 3rem 1.5rem 5rem;
+      gap: 4rem;
+    }
+    #contacto {
+      padding: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav aria-label="Navegación principal">
+  <a href="#sobre-nosotros" class="active">Sobre Nosotros</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#testimonios">Testimonios</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<header role="banner" aria-label="Introducción a Terapia Emocional Profesional">
+  <h1>Terapia Emocional Profesional</h1>
+  <p>Encuentra el equilibrio y bienestar que mereces con nuestros servicios personalizados y acompañamiento experto.</p>
+  <button class="btn-primary" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" aria-label="Contacta con nosotros">Contáctanos</button>
+</header>
+
+<main>
+  <section id="sobre-nosotros" tabindex="-1" aria-label="Sección sobre la empresa">
+    <h2 class="reveal">Sobre Nosotros</h2>
+    <p class="reveal">Somos un equipo de expertos en psicología, terapia y coaching emocional comprometidos con tu salud mental y crecimiento personal. Nuestra misión es ofrecerte herramientas, espacios y acompañamiento para que puedas desarrollar tu bienestar integral y una vida más plena.</p>
+    <p class="reveal">Trabajamos con técnicas modernas avaladas por la ciencia, y una atención cálida y personalizada, siempre poniendo en el centro tus necesidades y objetivos.</p>
+  </section>
+
+  <section id="servicios" tabindex="-1" aria-label="Lista de servicios profesionales">
+    <article class="service-card reveal" tabindex="0" aria-label="Meditación Consciente">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Persona meditando en paisaje natural" />
+      <h3>Meditación Consciente</h3>
+      <p>Prácticas guiadas para conectar con el presente, reducir estrés y aumentar tu bienestar mental.</p>
+      <ul>
+        <li>Sesiones en vivo y grabadas.</li>
+        <li>Técnicas de respiración y relajación.</li>
+        <li>Acceso a recursos exclusivos.</li>
+      </ul>
+    </article>
+
+    <article class="service-card reveal" tabindex="0" aria-label="Terapia Individual">
+      <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=600&q=80" alt="Consulta terapéutica individual" />
+      <h3>Terapia Individual</h3>
+      <p>Atención personalizada para abordar tus retos emocionales y alcanzar tu equilibrio personal.</p>
+      <ul>
+        <li>Sesiones presenciales y online.</li>
+        <li>Planes adaptados a ti.</li>
+        <li>Confidencialidad garantizada.</li>
+      </ul>
+    </article>
+
+    <article class="service-card reveal" tabindex="0" aria-label="Coaching Emocional">
+      <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80" alt="Persona en sesión de coaching" />
+      <h3>Coaching Emocional</h3>
+      <p>Herramientas prácticas para potenciar tu autoconocimiento, motivación y desarrollo personal.</p>
+      <ul>
+        <li>Sesiones grupales y privadas.</li>
+        <li>Ejercicios prácticos.</li>
+        <li>Apoyo continuo.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section id="testimonios" tabindex="-1" aria-label="Testimonios de clientes satisfechos">
+    <h2 class="reveal">Testimonios</h2>
+    <div class="testimonial-container reveal" role="list" aria-live="polite">
+      <div class="testimonial" role="listitem">
+        <p>"Gracias a Terapia Emocional Profesional, he aprendido a manejar mi ansiedad y encontrar paz interior."</p>
+        <strong>- María L.</strong>
+      </div>
+      <div class="testimonial" role="listitem">
+        <p>"El acompañamiento y las técnicas son muy efectivas. Me siento renovado y con más confianza."</p>
+        <strong>- Juan P.</strong>
+      </div>
+      <div class="testimonial" role="listitem">
+        <p>"El equipo es muy profesional y cercano. Recomiendo mucho sus servicios."</p>
+        <strong>- Ana G.</strong>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" tabindex="-1" aria-label="Formulario de contacto">
+    <h2>Contacto</h2>
+    <form action="#" method="post" aria-describedby="contact-desc">
+      <label for="nombre">Nombre Completo</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+
+      <label for="email">Correo Electrónico</label>
+      <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+
+      <label for="asunto">Asunto</label>
+      <select id="asunto" name="asunto" required>
+        <option value="" disabled selected>Selecciona un tema</option>
+        <option value="consulta">Consulta</option>
+        <option value="cita">Agendar Cita</option>
+        <option value="otro">Otro</option>
+      </select>
+
+      <label for="mensaje">Mensaje</label>
+      <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+
+      <button type="submit" aria-label="Enviar mensaje">Enviar</button>
+    </form>
+  </section>
+</main>
+
+<footer role="contentinfo">
+  <div>
+    <h3>Acerca de Nosotros</h3>
+    <p>En Terapia Emocional Profesional, ayudamos a transformar vidas a través de la psicología y el coaching emocional.</p>
+  </div>
+  <div>
+    <h3>Navegación</h3>
+    <nav aria-label="Navegación del pie de página">
+      <a href="#sobre-nosotros">Sobre Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+  <div>
+    <h3>Redes Sociales</h3>
+    <div class="social-icons" aria-label="Enlaces a redes sociales">
+      <a href="#" aria-label="Facebook" title="Facebook" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12a9.993 9.993 0 0 0 8.162 9.801v-6.932H7.898v-2.87h2.264V9.797c0-2.243 1.324-3.48 3.356-3.48.973 0 1.978.175 1.978.175v2.18h-1.114c-1.098 0-1.441.683-1.441 1.383v1.664h2.449l-.391 2.87h-2.058v6.932A9.993 9.993 0 0 0 22 12Z"/></svg></a>
+      <a href="#" aria-label="Twitter" title="Twitter" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.26 4.26 0 0 0 1.88-2.35 8.57 8.57 0 0 1-2.7 1.03A4.25 4.25 0 0 0 11.18 9a12.06 12.06 0 0 1-8.75-4.44 4.24 4.24 0 0 0 1.31 5.68 4.2 4.2 0 0 1-1.93-.53v.05a4.24 4.24 0 0 0 3.41 4.16 4.27 4.27 0 0 1-1.92.07 4.24 4.24 0 0 0 3.96 2.95A8.5 8.5 0 0 1 2 19.54a12.02 12.02 0 0 0 6.52 1.91c7.82 0 12.1-6.48 12.1-12.1 0-.18 0-.35-.01-.53A8.56 8.56 0 0 0 22.46 6Z"/></svg></a>
+      <a href="#" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.75 2h8.5C19.55 2 22 4.46 22 7.75v8.5c0 3.29-2.45 5.75-5.75 5.75h-8.5C4.46 22 2 19.55 2 16.25v-8.5C2 4.46 4.46 2 7.75 2Zm0 1.5a4.25 4.25 0 0 0-4.24 4.25v8.5a4.25 4.25 0 0 0 4.24 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.12 2.5a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Zm-4.37 1.38a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Z"/></svg></a>
+    </div>
+  </div>
+  <div>
+    <h3>Suscríbete a nuestro Newsletter</h3>
+    <form class="newsletter-form" aria-label="Formulario para suscribirse al newsletter">
+      <input type="email" placeholder="Tu correo electrónico" aria-label="Correo electrónico para newsletter" required />
+      <button type="submit" aria-label="Suscribirse">Suscribirse</button>
+    </form>
+  </div>
+</footer>
+
+<!-- Asistente Virtual -->
+<div id="virtual-assistant" aria-label="Asistente virtual" role="button" tabindex="0" title="Abrir chat">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3C7.03 3 3 7.03 3 12c0 2.34 1.04 4.45 2.69 5.87L6 21l3.13-1.44a8.94 8.94 0 0 0 6.62 0L18 21l.31-3.13A8.94 8.94 0 0 0 21 12c0-4.97-4.03-9-9-9Zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7Z"/></svg>
+</div>
+
+<div id="chat-window" role="dialog" aria-modal="true" aria-labelledby="chat-title">
+  <header>
+    <span id="chat-title">Asistente Virtual</span>
+    <button aria-label="Cerrar chat" id="chat-close-btn">&times;</button>
+  </header>
+  <div id="chat-messages" tabindex="0" aria-live="polite"></div>
+  <div id="chat-input-container">
+    <input type="text" id="chat-input" aria-label="Escribe tu mensaje aquí" placeholder="Escribe tu mensaje..." />
+    <button id="chat-send-btn" aria-label="Enviar mensaje">Enviar</button>
+  </div>
+</div>
+
+<script>
+  // Scroll reveal básico
+  const reveals = document.querySelectorAll('.reveal');
+  const revealOnScroll = () => {
+    for (let el of reveals) {
+      const windowHeight = window.innerHeight;
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < windowHeight - 100) {
+        el.classList.add('active');
+      }
+    }
+  };
+  window.addEventListener('scroll', revealOnScroll);
+  revealOnScroll();
+
+  // Testimonios carrusel básico
+  const testimonials = document.querySelectorAll('.testimonial');
+  let currentTestimonial = 0;
+  const showTestimonial = (index) => {
+    testimonials.forEach((t, i) => {
+      t.style.transform = `translateX(${100 * (i - index)}%)`;
+    });
+  };
+  showTestimonial(currentTestimonial);
+
+  // Auto rotar testimonios
+  setInterval(() => {
+    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+    showTestimonial(currentTestimonial);
+  }, 8000);
+
+  // Asistente Virtual
+  const assistantBtn = document.getElementById('virtual-assistant');
+  const chatWindow = document.getElementById('chat-window');
+  const chatCloseBtn = document.getElementById('chat-close-btn');
+  const chatMessages = document.getElementById('chat-messages');
+  const chatInput = document.getElementById('chat-input');
+  const chatSendBtn = document.getElementById('chat-send-btn');
+
+  assistantBtn.addEventListener('click', () => {
+    chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+    if (chatWindow.style.display === 'flex') {
+      chatInput.focus();
+    }
+  });
+  chatCloseBtn.addEventListener('click', () => {
+    chatWindow.style.display = 'none';
+  });
+
+  const botResponses = {
+    hola: "¡Hola! ¿En qué puedo ayudarte hoy?",
+    ayuda: "Claro, dime qué necesitas y te ayudaré.",
+    contacto: "Puedes contactarnos llenando el formulario en la sección 'Contacto'.",
+    servicios: "Ofrecemos meditación consciente, terapia individual y coaching emocional.",
+    gracias: "¡De nada! Estoy aquí para ayudarte.",
+  };
+
+  const getBotResponse = (message) => {
+    const msg = message.toLowerCase();
+    for (const key in botResponses) {
+      if (msg.includes(key)) {
+        return botResponses[key];
+      }
+    }
+    return "Disculpa, no entendí eso. ¿Podrías reformularlo?";
+  };
+
+  const appendMessage = (content, sender) => {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('message', sender);
+    msgDiv.textContent = content;
+    chatMessages.appendChild(msgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  };
+
+  chatSendBtn.addEventListener('click', () => {
+    const message = chatInput.value.trim();
+    if (!message) return;
+    appendMessage(message, 'user');
+    chatInput.value = '';
+    setTimeout(() => {
+      appendMessage(getBotResponse(message), 'bot');
+    }, 700);
+  });
+
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      chatSendBtn.click();
+    }
+  });
+</script>
+
+</body>
+</html>
